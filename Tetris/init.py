@@ -4,10 +4,9 @@ import os
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'box file')
 #custom event
-BLOCK_ON_GROUND=pygame.USEREVENT+1
-BLOCK_DOWN     =pygame.USEREVENT+2
-LOSE           =pygame.USEREVENT+3
-UPGRADE        =pygame.USEREVENT+4
+BLOCK_DOWN     =pygame.USEREVENT+1
+LOSE           =pygame.USEREVENT+2
+UPGRADE        =pygame.USEREVENT+3
 # 初始设置
 pygame.init() # 初始化pygame
 screen = pygame.display.set_mode((500,600)) # Pygame窗口

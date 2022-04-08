@@ -16,10 +16,8 @@ def event_per_tick(tick,player):
     if tick%BLOCK_DOWN_INTERVAL==0:
         pygame.event.post(pygame.event.Event(BLOCK_DOWN))
 
-
 #__________________________________________###
 
-# 游戏循环
 f=field( 10,10 )
 current_block=generate_random_block()
 next_block = generate_random_block()
@@ -42,14 +40,12 @@ while keep_going:
             player.deal_with_keydown(event.key)
             if event.key==pygame.K_SPACE:
                 pause()
-        elif event.type==BLOCK_ON_GROUND:
-            player.deal_with_BLOCK_ON_GROUND()
-
         elif event.type==BLOCK_DOWN:
             player.block_down()
         elif event.type==UPGRADE:
             player.field.upgrade()
         elif event.type==LOSE:
+            print("You lose!")
             keep_going = False
 
     player.render_block()  

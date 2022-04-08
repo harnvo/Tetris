@@ -42,7 +42,6 @@ def generate_random_block():
         rand_pos=random.randint(1,8)
         return T_block(rand_color,rand_pos)
 
-
 ###_________________________________________###
 ### game objects
 class field:
@@ -55,14 +54,13 @@ class field:
 
     def update_field_info(self,block)->None:
         original_score=self.score
-
         eliminated_line=0
         
         for box in block.boxes:
-            #update occupied field and lowest available place
             x,y=box.get_pos()
             if y==0:
                 pygame.event.post(pygame.event.Event(LOSE))
+                print(x,y)
                 return
 
             self.occupied_field[x][y]=box.color
@@ -334,8 +332,7 @@ class observer:
             self.block.down()
             self.render_block()
         else:
-            #post event BLOCK_ON_GROUND
-            pygame.event.post(pygame.event.Event(BLOCK_ON_GROUND))
+            self.deal_with_BLOCK_ON_GROUND()
             return
 
     def block_left(self):
@@ -367,6 +364,17 @@ class observer:
             self.block_rotate()
 
     def deal_with_BLOCK_ON_GROUND(self):
+        """
+        debuging
+        """
+        print("printing every box in block")
+        for box in self.block.boxes:
+            print(box.x,box.y)
+
+        print("____________________________")
+
+
+
         self.field.update_field_info(self.block)
         self.block=self.next_block
         self.next_block=generate_random_block()
@@ -383,6 +391,3 @@ class observer:
             screen.blit(box.pic,(x*DISTANCE+dx,y*DISTANCE+dy))
 
 ###_____________________________________###
-
-
-
